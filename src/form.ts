@@ -1,4 +1,4 @@
-import './styles.css';
+import './styles/main.css';
 
 const app = document.getElementById('app')!;
 

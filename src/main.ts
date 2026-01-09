@@ -1,41 +1,10 @@
-import './styles.css';
-import profileImage from './public/me.png';
-import vegaImage from './public/vega.png';
-
-interface SocialLink {
-  name: string;
-  icon: string;
-  url: string;
-  count: string;
-}
-
-interface Service {
-  title: string;
-  tagline: string;
-  features: string[];
-  price: string;
-  buttonText?: string;
-  disabled?: boolean;
-}
-
-interface Project {
-  title: string;
-  description: string;
-  url?: string;
-  image?: string;
-  socialIcons?: string[];
-  inConstruction?: boolean;
-}
+import './styles/main.css';
+import profileImage from './assets/me.png';
+import vegaImage from './assets/vega.png';
+import type { Service, Project } from './types';
 
 const app = document.getElementById('app')!;
 
-const socialLinks: SocialLink[] = [
-  { name: 'Twitter', icon: '𝕏', url: '#', count: '2.5K' },
-  { name: 'LinkedIn', icon: 'in', url: '#', count: '1.2K' },
-  { name: 'GitHub', icon: '{}', url: '#', count: '850' },
-  { name: 'Instagram', icon: '📷', url: '#', count: '3.1K' },
-  { name: 'TikTok', icon: '🎵', url: '#', count: '2.2K' },
-];
 
 const services: Service[] = [
   {
@@ -166,27 +135,6 @@ function createWhoIAmSection(): string {
 }
 
 
-function createWhereToFindMeSection(): string {
-  const socialHTML = socialLinks
-    .map(
-      (social) => `
-      <a href="${social.url}" class="social-item" target="_blank" rel="noopener noreferrer">
-        <div class="social-icon">${social.icon}</div>
-        <div class="social-count">${social.count}</div>
-      </a>
-    `
-    )
-    .join('');
-
-  return `
-    <div class="section">
-      <div class="section-title">donde puedes encontrarme?</div>
-      <div class="social-links">
-        ${socialHTML}
-      </div>
-    </div>
-  `;
-}
 
 function createServicesSection(): string {
   const servicesHTML = services
@@ -431,7 +379,6 @@ function createSalaryProgressionSection(): string {
 }
 
 function createFooter(): string {
-  const currentYear = new Date().getFullYear();
   const heartIcon = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin: 0 2px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>';
   return `
     <div class="footer">

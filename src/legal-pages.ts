@@ -1,4 +1,4 @@
-import './styles.css';
+import './styles/main.css';
 import { LEGAL } from './config/legal';
 
 const app = document.getElementById('app')!;
