@@ -59,7 +59,7 @@ const projects: Project[] = [
   {
     title: 'SDET at Vega',
     description: 'No es un proyecto propio pero invierto 8 horas de mi día en una startup Fintech con $20M de Serie A financiada por Apollo, solo ellos manejan 1.3 billones en un mercado total de trillones de dólares.',
-    url: '#',
+    url: 'https://www.vega-alts.com',
     image: vegaImage,
   },
   {
@@ -264,7 +264,12 @@ function createProjectsSection(): string {
         let socialIconsHTML = '';
 
         if (project.image) {
-          imageHTML = `<div class="project-image-wrapper"><img src="${project.image}" alt="${project.title}" class="project-image" /></div>`;
+          const imageTag = `<img src="${project.image}" alt="${project.title}" class="project-image" />`;
+          if (project.url && project.url !== '#') {
+            imageHTML = `<div class="project-image-wrapper"><a href="${project.url}" target="_blank" rel="noopener noreferrer">${imageTag}</a></div>`;
+          } else {
+            imageHTML = `<div class="project-image-wrapper">${imageTag}</div>`;
+          }
         }
 
         if (project.socialIcons && project.socialIcons.length > 0) {
