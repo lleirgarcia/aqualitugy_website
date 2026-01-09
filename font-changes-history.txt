@@ -1,0 +1,26 @@
+HISTORIAL DE CAMBIOS DE TIPOGRAFÍA - TÍTULO "aqualityguy"
+================================================================
+
+Cambio 1:
+- Fecha: Inicial
+- Fuente: Space Grotesk (fuente del body)
+- Tamaño: 32px
+- Peso: 700 (bold)
+- Texto: "AqualityGuy" (con mayúsculas)
+- Letter-spacing: 0px
+
+Cambio 2:
+- Fecha: Primera modificación
+- Fuente: Space Grotesk
+- Tamaño: 24px (reducido)
+- Peso: 400 (normal, más minimalista)
+- Texto: "aqualityguy" (todo minúsculas y junto)
+- Letter-spacing: 0.5px
+
+Cambio 3:
+- Fecha: Actual
+- Fuente: JetBrains Mono (monoespaciada)
+- Tamaño: 24px
+- Peso: 400 (normal)
+- Texto: "aqualityguy" (todo minúsculas y junto)
+- Letter-spacing: 0.5px
