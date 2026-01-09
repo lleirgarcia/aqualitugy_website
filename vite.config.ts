@@ -12,6 +12,9 @@ export default defineConfig({
       input: {
         main: './index.html',
         form: './form.html',
+        avisoLegal: './aviso-legal.html',
+        politicaPrivacidad: './politica-de-privacidad.html',
+        terminosCondiciones: './terminos-y-condiciones.html',
       },
     },
   },

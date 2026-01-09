@@ -200,6 +200,24 @@ function createFormSection(): string {
               </div>
             </div>
             
+            <div class="form-privacy">
+              <p class="form-privacy-text">
+                Los datos proporcionados serán tratados conforme a nuestra <a href="/politica-de-privacidad.html" target="_blank">Política de Privacidad</a> y <a href="/terminos-y-condiciones.html" target="_blank">Términos y Condiciones</a>.
+              </p>
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="privacyAccept" name="privacyAccept" required />
+                  <span>He leído y acepto la <a href="/politica-de-privacidad.html" target="_blank">Política de Privacidad</a> *</span>
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="marketingAccept" name="marketingAccept" />
+                  <span>Quiero recibir comunicaciones comerciales y promocionales</span>
+                </label>
+              </div>
+              <input type="text" name="website" id="website" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1" autocomplete="off" />
+            </div>
             <div class="form-actions">
               <button type="submit" class="submit-button">Enviar formulario</button>
               <a href="/" class="cancel-link">Volver a inicio</a>
@@ -279,11 +297,29 @@ setTimeout(() => {
     });
   }
 
+  // Validación del honeypot (anti-spam)
+  const honeypotInput = document.getElementById('website') as HTMLInputElement;
+  
   // Manejo del formulario
   const form = document.getElementById('serviceForm') as HTMLFormElement;
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      
+      // Validar honeypot
+      if (honeypotInput && honeypotInput.value !== '') {
+        console.log('Spam detectado');
+        return;
+      }
+      
+      // Validar checkbox obligatorio
+      const privacyCheckbox = document.getElementById('privacyAccept') as HTMLInputElement;
+      if (!privacyCheckbox || !privacyCheckbox.checked) {
+        alert('Debes aceptar la Política de Privacidad para continuar');
+        privacyCheckbox?.focus();
+        return;
+      }
+      
       // Aquí iría la lógica de envío del formulario
       alert('Formulario enviado (esto es un ejemplo)');
     });

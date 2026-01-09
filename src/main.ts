@@ -435,7 +435,16 @@ function createFooter(): string {
   const heartIcon = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin: 0 2px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>';
   return `
     <div class="footer">
-      © 2026 AQUALITIGUY. Todos los derechos reservados. · Hecho por Lleïr con ${heartIcon} y Vibe Code
+      <div>
+        © 2026 AQUALITIGUY. Todos los derechos reservados. · Hecho por Lleïr con ${heartIcon} y Vibe Code
+      </div>
+      <div class="footer-links">
+        <a href="/aviso-legal.html">Aviso Legal</a>
+        <span>·</span>
+        <a href="/politica-de-privacidad.html">Política de Privacidad</a>
+        <span>·</span>
+        <a href="/terminos-y-condiciones.html">Términos y Condiciones</a>
+      </div>
     </div>
   `;
 }
@@ -528,6 +537,24 @@ function createModal(): string {
           <div class="form-group">
             <label for="salarioDeseado">Salario deseado</label>
             <input type="number" id="salarioDeseado" name="salarioDeseado" min="20000" max="300000" step="10000" required />
+          </div>
+          <div class="form-privacy">
+            <p class="form-privacy-text">
+              Los datos proporcionados serán tratados conforme a nuestra <a href="/politica-de-privacidad.html" target="_blank">Política de Privacidad</a> y <a href="/terminos-y-condiciones.html" target="_blank">Términos y Condiciones</a>.
+            </p>
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="modalPrivacyAccept" name="modalPrivacyAccept" required />
+                <span>He leído y acepto la <a href="/politica-de-privacidad.html" target="_blank">Política de Privacidad</a> *</span>
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="modalMarketingAccept" name="modalMarketingAccept" />
+                <span>Quiero recibir comunicaciones comerciales y promocionales</span>
+              </label>
+            </div>
+            <input type="text" name="website_modal" id="website_modal" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1" autocomplete="off" />
           </div>
           <button type="submit" class="submit-button">Enviar</button>
         </form>
@@ -651,6 +678,22 @@ setTimeout(() => {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      
+      // Validar honeypot
+      const honeypotInput = document.getElementById('website_modal') as HTMLInputElement;
+      if (honeypotInput && honeypotInput.value !== '') {
+        console.log('Spam detectado');
+        return;
+      }
+      
+      // Validar checkbox obligatorio
+      const privacyCheckbox = document.getElementById('modalPrivacyAccept') as HTMLInputElement;
+      if (!privacyCheckbox || !privacyCheckbox.checked) {
+        alert('Debes aceptar la Política de Privacidad para continuar');
+        privacyCheckbox?.focus();
+        return;
+      }
+      
       // Aquí puedes añadir la lógica para enviar el formulario
       console.log('Formulario enviado');
       alert('Formulario enviado (funcionalidad pendiente de implementar)');
