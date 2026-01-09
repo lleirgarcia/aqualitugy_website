@@ -48,6 +48,26 @@
   - Añadir facturación automática
   - Gestionar cancelaciones y cambios de plan
 
+### 6. Sistema de envío de servicios después de charla de 15 minutos
+- **Objetivo**: Crear un sistema sencillo para enviar automáticamente el servicio adecuado después de una charla de 15 minutos
+- **Contexto**: Cuando se haga una charla de 15 minutos, yo mismo sabré lo que la persona necesita, por lo tanto deberé crear algo sencillo para enviarle el servicio que toque de lo que voy a ofrecer
+- **Requisitos**:
+  - Sistema simple y rápido para seleccionar y enviar el servicio adecuado
+  - Posiblemente un panel o formulario donde pueda seleccionar el servicio y enviarlo por email
+  - Debe incluir información del servicio, precios y próximos pasos
+  - Integración con el sistema de calendario para asociar la charla con el envío del servicio
+
+### 7. Plataforma de cliente para gestión de sesiones y avances
+- **Objetivo**: Crear una plataforma sencilla donde los clientes puedan hacer login y ver su información de servicio
+- **Contexto**: Esto se puede desarrollar en el proyecto "Vuild in Public"
+- **Requisitos**:
+  - Sistema de autenticación con email y password
+  - Dashboard personalizado según el servicio contratado
+  - Visualización de sesiones restantes
+  - Seguimiento de avances y progreso
+  - Acceso a recursos y contenido exclusivo según el servicio
+  - Interfaz simple y minimalista, coherente con el estilo de la página principal
+
 ## Notas
 - Todos los cambios deben mantener la estética oscura y minimalista actual
 - Los CTAs deben ser sutiles pero efectivos

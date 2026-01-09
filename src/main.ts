@@ -105,7 +105,7 @@ function createWhoIAmSection(): string {
         <div>
           <div class="profile-name">aqualityguy</div>
           <div class="section-intro">
-            Hola, soy Lleïr Garcia y me he dedicado más de 11 años a la industria del software como Desarrollador, QA y Lead. Además, creo contenido en redes sociales según mi experiencia vivida con el objetivo de motivar a las personas a ser mejores profesionales, obtener mejores trabajos y ganar más dinero.
+            Hola, soy Lleïr Garcia y me he dedicado más de 11 años a la industria del software como Desarrollador, QA y Lead. No tengo carrera, vengo de una FP y ni siquiera pagué mi título. Solo fiel creyente del autodidactismo y el buscarse la vida. Creo contenido en redes sociales según mi experiencia vivida con el objetivo de motivar a las personas a ser mejores profesionales, obtener mejores trabajos y ganar más dinero.
           </div>
         </div>
       </div>
@@ -117,24 +117,75 @@ function createWhoIAmSection(): string {
         <span>quien soy</span>
       </div>
       <div class="about-content">
-        <p>
-          Soy una persona extrovertida y ambiciosa que nunca pensó en quedarse en una PIME por un miserable sueldo de 11 mil euros al año limitando mis conocimientos.
-        </p>
-        <p>
-          Es por eso que en estos 11 años en la industria, en el área de calidad del software (donde también se programa!) he desarrollado mi carrera, crecido, estudiado y ganado más dinero año tras año.
-        </p>
-        <p>
-          Soy un lector, devoro libros y también va por épocas, pero los libros y podcast me convirtieron la persona que soy hoy.
-        </p>
-        <p>
-          En mis redes sociales expongo mis opiniones sin filtros, hablo de lo que debes hacer si quieres un mejor trabajo, despedir a tu jefe, ganar más dinero y no quedarte obsoleto. A la mayoría no le gusta porque no son perezosos.
-        </p>
+        <div class="about-content-visible">
+          <p>
+            Soy una persona vergonzosa pero extrovertida, no hago ruido pero trabajadora como nadie, no tengo talentos pero sí ambición y constancia, desde que empecé supe que en tecnología había trabajo y dinero, no me equivoqué. A día de hoy, estamos en la mejor época tecnológica de la historia.
+          </p>
+          <p>
+            Es por eso que en este espacio te invito a sacar lo mejor de ti, descubrir lo que todavía no conoces y ayudarte a conseguirlo.
+          </p>
+          <p>
+            Es por eso que en estos 11 años en la industria, en el área de calidad del software (donde también se programa!) he desarrollado mi carrera, crecido, estudiado y ganado más dinero año tras año.
+          </p>
+        </div>
+        <button class="read-more-btn" id="readMoreBtn">seguir leyendo</button>
+        <div class="about-content-hidden" id="hiddenContent" style="display: none;">
+          <p>
+            En mis 11 años he pasado por más de 7 empresas, más de 14 proyectos, miles de situaciones buenas y otras muy complicadas, he trabajado en proyectos en producción con despliegues constantes, proyectos inertes, legacies y MVP's "super importantes", y he conocido y colaborado con más de 200 profesionales de los que he aprendido lo bueno y lo malo.
+          </p>
+          <p>
+            Me conozco la industria, y si te digo la verdad, ni el bueno es tan bueno ni el malo es tan malo.
+          </p>
+          <p>
+            Conozco personas ganando barbaridades siendo buenos técnicos pero ya, mientras cracks de verdad siguen en consultora Pepe S.A. por 38 mil brutos al año.
+          </p>
+          <p>
+            Esa es una de mis facetas, ayudar a las personas a darse cuenta.
+          </p>
+          <p>
+            Soy un lector, devoro libros, economía, filosofía, emprendimiento, empresa, desarrollo personal, los libros y podcast me convirtieron la persona que soy hoy.
+          </p>
+          <p>
+            En mis redes sociales expongo mis opiniones sin filtros, hablo de lo que debes hacer si quieres encontrar un trabajo o mejorar el que ya tienes, despedir a tu jefe, ganar más dinero y no quedarte obsoleto.
+          </p>
+        </div>
       </div>
     </div>
   `;
 }
 
-
+function createHowICanHelpSection(): string {
+  return `
+    <div class="section">
+      <div class="section-title">
+        <svg class="section-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        <span>cómo puedo ayudarte y por qué</span>
+      </div>
+      <div class="help-content">
+        <p>
+          He pasado de ganar 11.000€ al año a más de 85.000€ en 11 años. No fue suerte. Fue estrategia, ambición y una forma de pensar diferente que me permitió crecer cuando otros se quedaban estancados.
+        </p>
+        <p>
+          Durante estos años he trabajado como Desarrollador, QA Engineer y Lead en más de 13 proyectos, desde startups hasta empresas con billones en volumen. He visto qué funciona y qué no. He aprendido a negociar salarios, a cambiar de empresa cuando era necesario y a pensar como senior desde el día uno.
+        </p>
+        <p>
+          Mi enfoque es directo y sin filtros. No te voy a vender humo ni promesas vacías. Te voy a decir exactamente qué hacer para mejorar tu situación: cómo preparar tu perfil, cómo negociar, cómo pensar estratégicamente sobre tu carrera y cómo encontrar oportunidades que otros no ven.
+        </p>
+        <p>
+          He ayudado a más de 50 personas a mejorar sus condiciones laborales, aumentar sus salarios y encontrar trabajos mejores. Mis más de 18 mil seguidores en redes sociales confían en mi contenido porque hablo desde la experiencia real, no desde la teoría.
+        </p>
+        <p>
+          Si estás cansado de estar estancado, si quieres un futuro mejor pero no sabes por dónde empezar, o si ya eres senior pero sientes que te falta ese último empujón para llegar al siguiente nivel, puedo ayudarte. No porque sea mejor que nadie, sino porque he recorrido ese camino y sé exactamente qué se necesita para llegar.
+        </p>
+      </div>
+    </div>
+  `;
+}
 
 function createServicesSection(): string {
   const servicesHTML = services
@@ -200,7 +251,7 @@ function createProjectsSection(): string {
         let socialIconsHTML = '';
 
         if (project.image) {
-          imageHTML = `<img src="${project.image}" alt="${project.title}" class="project-image" />`;
+          imageHTML = `<div class="project-image-wrapper"><img src="${project.image}" alt="${project.title}" class="project-image" /></div>`;
         }
 
         if (project.socialIcons && project.socialIcons.length > 0) {
@@ -403,7 +454,7 @@ function createModal(): string {
         <button class="modal-close" aria-label="Cerrar">&times;</button>
         <h2 class="modal-title">Mi nómina actual</h2>
         <p class="modal-description">
-          Si quieres saber lo que gana un residente español trabajando desde Londres, rellena esto 
+          Si quieres saber lo que gana un residente español trabajando desde Londres, rellena esto y te envío mi nómina
           <span style="display: inline-block; font-size: 16px;">↓</span>
         </p>
         <form id="salaryForm" class="salary-form">
@@ -553,6 +604,7 @@ app.innerHTML = `
     ${createWhoIAmSection()}
     ${createProjectsSection()}
     ${createSalaryProgressionSection()}
+    ${createHowICanHelpSection()}
     ${createServicesSection()}
     ${createFooter()}
   </div>
@@ -592,6 +644,19 @@ function generateRandomStarPositions() {
 setTimeout(() => {
   generateRandomStarPositions();
 }, 0);
+
+// Funcionalidad de "seguir leyendo"
+setTimeout(() => {
+  const readMoreBtn = document.getElementById('readMoreBtn');
+  const hiddenContent = document.getElementById('hiddenContent');
+  
+  if (readMoreBtn && hiddenContent) {
+    readMoreBtn.addEventListener('click', () => {
+      hiddenContent.style.display = 'block';
+      readMoreBtn.style.display = 'none';
+    });
+  }
+}, 100);
 
 // Funcionalidad del modal - se ejecuta después de que el DOM esté listo
 setTimeout(() => {
