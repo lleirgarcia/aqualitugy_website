@@ -56,7 +56,7 @@ const services: Service[] = [
   },
   {
     title: 'creetelo',
-    tagline: 'Da el salto al 1%',
+    tagline: 'Da el salto al 1% - Solo para Seniors',
     features: [
       'Consultoría de 5 horas al mes',
       'Contacto directo conmigo',
@@ -81,6 +81,7 @@ const services: Service[] = [
       'Plan básico de comunidad'
     ],
     price: '€XXX/mes',
+    buttonText: 'acceder',
     disabled: true
   },
 ];
@@ -154,7 +155,7 @@ function createWhoIAmSection(): string {
           Es por eso que en estos 11 años en la industria, en el área de calidad del software (donde también se programa!) he desarrollado mi carrera, crecido, estudiado y ganado más dinero año tras año.
         </p>
         <p>
-          Soy un lector, devoro libros y también va por épocas, pero los libros también curtieron la persona que soy hoy.
+          Soy un lector, devoro libros y también va por épocas, pero los libros y podcast me convirtieron la persona que soy hoy.
         </p>
         <p>
           En mis redes sociales expongo mis opiniones sin filtros, hablo de lo que debes hacer si quieres un mejor trabajo, despedir a tu jefe, ganar más dinero y no quedarte obsoleto. A la mayoría no le gusta porque no son perezosos.
@@ -197,7 +198,7 @@ function createServicesSection(): string {
         
         const disabledClass = service.disabled ? 'service-disabled' : '';
         const separator = index < services.length - 1 ? '<div class="service-separator"></div>' : '';
-        const buttonText = service.disabled ? service.price : (service.buttonText || 'a ver si encaja');
+        const buttonText = service.buttonText || (service.disabled ? service.price : 'a ver si encaja');
         const comingSoonOverlay = service.disabled ? '<div class="service-coming-soon">construyendo algo chulo</div>' : '';
         
         return `
@@ -536,13 +537,13 @@ function createModal(): string {
 }
 
 function createTopSocialBar(): string {
-  const youtubeIcon = `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;
+  const youtubeIcon = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;
   
-  const instagramIcon = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>`;
+  const instagramIcon = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>`;
   
-  const tiktokIcon = `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>`;
+  const tiktokIcon = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>`;
   
-  const linkedinIcon = `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg>`;
+  const linkedinIcon = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg>`;
   
   const topSocialLinks = [
     { name: 'YouTube', icon: youtubeIcon, url: 'https://www.youtube.com/@aqualityguy', count: '3K' },
@@ -583,6 +584,40 @@ app.innerHTML = `
   </div>
   ${createModal()}
 `;
+
+// Generar posiciones aleatorias para las estrellas del fondo
+function generateRandomStarPositions() {
+  const generateGradients = (count: number) => {
+    const gradients = [];
+    for (let i = 0; i < count; i++) {
+      const x = Math.random() * 300;
+      const y = Math.random() * 300;
+      const size = Math.random() * 2 + 0.5; // Tamaño entre 0.5px y 2.5px
+      const opacity = Math.random() * 0.3 + 0.5; // Opacidad entre 0.5 y 0.8
+      gradients.push(`radial-gradient(${size}px ${size}px at ${x}px ${y}px, rgba(255, 255, 255, ${opacity}), transparent)`);
+    }
+    return gradients.join(', ');
+  };
+
+  const layer1 = document.querySelector('.stars-layer-1') as HTMLElement;
+  const layer2 = document.querySelector('.stars-layer-2') as HTMLElement;
+  const layer3 = document.querySelector('.stars-layer-3') as HTMLElement;
+
+  if (layer1) {
+    layer1.style.backgroundImage = generateGradients(4);
+  }
+  if (layer2) {
+    layer2.style.backgroundImage = generateGradients(4);
+  }
+  if (layer3) {
+    layer3.style.backgroundImage = generateGradients(4);
+  }
+}
+
+// Aplicar posiciones aleatorias a las estrellas al cargar
+setTimeout(() => {
+  generateRandomStarPositions();
+}, 0);
 
 // Funcionalidad del modal - se ejecuta después de que el DOM esté listo
 setTimeout(() => {
