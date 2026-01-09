@@ -24,6 +24,30 @@
   - Botones o enlaces discretos pero visibles
   - Coherentes con el estilo general de la página
 
+### 3. Rellenar formularios y enviarlos a correo específico
+- **Objetivo**: Implementar funcionalidad de envío de formularios a un correo específico
+- **Requisitos**:
+  - Configurar envío de emails con los datos del formulario
+  - Añadir validación completa antes del envío
+  - Implementar confirmación de envío al usuario
+  - Manejar errores de envío de forma elegante
+
+### 4. Añadir selección de día y hora del calendario para charla de 15 minutos
+- **Objetivo**: Permitir a usuarios interesados en servicios reservar una charla de 15 minutos
+- **Requisitos**:
+  - Integrar un calendario interactivo para seleccionar fecha y hora
+  - Gestionar disponibilidad y evitar solapamientos
+  - Enviar confirmación de la cita
+  - Recordatorios automáticos (opcional)
+
+### 5. Introducir pasarela de pago Stripe para los servicios
+- **Objetivo**: Integrar Stripe para procesar pagos de los servicios
+- **Requisitos**:
+  - Configurar planes de suscripción mensual para cada servicio
+  - Implementar gestión de pagos recurrentes
+  - Añadir facturación automática
+  - Gestionar cancelaciones y cambios de plan
+
 ## Notas
 - Todos los cambios deben mantener la estética oscura y minimalista actual
 - Los CTAs deben ser sutiles pero efectivos

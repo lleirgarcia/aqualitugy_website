@@ -4,5 +4,11 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
+    rollupOptions: {
+      input: {
+        main: './index.html',
+        form: './form.html',
+      },
+    },
   },
 });

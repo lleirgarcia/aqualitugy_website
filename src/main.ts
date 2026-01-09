@@ -14,6 +14,7 @@ interface Service {
   tagline: string;
   features: string[];
   price: string;
+  buttonText?: string;
   disabled?: boolean;
 }
 
@@ -23,6 +24,7 @@ interface Project {
   url?: string;
   image?: string;
   socialIcons?: string[];
+  inConstruction?: boolean;
 }
 
 const app = document.getElementById('app')!;
@@ -43,23 +45,29 @@ const services: Service[] = [
       'Consultoría de 3 horas al mes conmigo',
       'Estrategias para mejorar como profesional',
       'Cómo encontrar un mejor trabajo y salario',
+      'Empieza a pensar como senior',
+      'Adapta tu perfil y tu speech',
       'Enfocado a juniors y middles',
       'Desarrollo de habilidades clave'
     ],
     price: '€XXX/mes',
+    buttonText: 'empecemos por algo',
     disabled: false
   },
   {
     title: 'creetelo',
-    tagline: 'Da el salto del 1%',
+    tagline: 'Da el salto al 1%',
     features: [
-      'Consultoría de 3 horas al mes',
+      'Consultoría de 5 horas al mes',
       'Contacto directo conmigo',
       'Ayuda a pasar de 45k a 70k',
+      'Encontrar trabajo en UK',
+      'Creamos al profesional que contratan',
       'Enfocado a personas senior',
       'Estrategias de crecimiento avanzadas'
     ],
     price: '€XXX/mes',
+    buttonText: 'quiero mas',
     disabled: false
   },
   {
@@ -80,13 +88,13 @@ const services: Service[] = [
 const projects: Project[] = [
   {
     title: 'SDET at Vega',
-    description: 'No es un proyecto propio pero invierto 8 horas de mi dia en una startup Fintech con $20M de Serie A financiada por Apollo, ellos solos manejan 1.3 billions en un mercado total de trillones de dolares.',
+    description: 'No es un proyecto propio pero invierto 8 horas de mi día en una startup Fintech con $20M de Serie A financiada por Apollo, solo ellos manejan 1.3 billones en un mercado total de trillones de dólares.',
     url: '#',
     image: vegaImage,
   },
   {
     title: 'Redes Sociales',
-    description: 'Comparto mi vision de forma semanal sobre la industria IT, lo bueno, lo malo y consejos para ser mejor profesional, ser mas listo y ganar mas dinero.',
+    description: 'Comparto mi visión de forma semanal sobre la industria IT, lo bueno, lo malo y consejos para ser mejor profesional, ser más listo y ganar más dinero.',
     url: '#',
     socialIcons: [
       'https://www.youtube.com/@aqualityguy',
@@ -96,9 +104,10 @@ const projects: Project[] = [
     ],
   },
   {
-    title: 'Proyecto 3',
-    description: 'Descripción del tercer proyecto destacado.',
+    title: 'Vuild in Public',
+    description: 'Aplicativo web y canal de YouTube enfocado a construir software lo más rápido posible, con o sin utilidad, apalancándome de IA con la idea de generar contenido, ideas y crear una comunidad al día del potencial existente.',
     url: '#',
+    inConstruction: true,
   },
 ];
 
@@ -126,7 +135,7 @@ function createWhoIAmSection(): string {
         <div>
           <div class="profile-name">aqualityguy</div>
           <div class="section-intro">
-            Hola, soly Lleïr Garcia y me he dedicado mas de 11 años a la industria del software como Desarrollador, QA y Lead. Además, creo contenido en redes sociales segun mi experiencia vivida con el objetivo de motivar a las personas a ser mejores profesionales, obtener mejores trabajos y ganar mas dinero.
+            Hola, soy Lleïr Garcia y me he dedicado más de 11 años a la industria del software como Desarrollador, QA y Lead. Además, creo contenido en redes sociales según mi experiencia vivida con el objetivo de motivar a las personas a ser mejores profesionales, obtener mejores trabajos y ganar más dinero.
           </div>
         </div>
       </div>
@@ -139,16 +148,16 @@ function createWhoIAmSection(): string {
       </div>
       <div class="about-content">
         <p>
-          Soy una persona extrovertida y ambiciosa que nunca penso en quedarse en una PIME por un miserable sueldo de 11 mil euros al año limitando mis conocimientos.
+          Soy una persona extrovertida y ambiciosa que nunca pensó en quedarse en una PIME por un miserable sueldo de 11 mil euros al año limitando mis conocimientos.
         </p>
         <p>
-          Es por eso que en estos 11 años en la industria, en el area de caldiad del software (donde también se programa!) he desarrollado mi carrera, crecido, estudiado y ganado mas dinero año tras año.
+          Es por eso que en estos 11 años en la industria, en el área de calidad del software (donde también se programa!) he desarrollado mi carrera, crecido, estudiado y ganado más dinero año tras año.
         </p>
         <p>
-          Soy un loector, deboro libros y tambien va por epocas, pero los libros también curtieron la persona que soy hoy.
+          Soy un lector, devoro libros y también va por épocas, pero los libros también curtieron la persona que soy hoy.
         </p>
         <p>
-          En mis redes sociales expongo mis opiniones sin filtros, hablo de lo que debes hacer si quieres un mejor trabajo, despedir a tu jefe, ganar mas dinero y no quedarte obsoleto. A la mayoría no le gusta porque no son perezosos.
+          En mis redes sociales expongo mis opiniones sin filtros, hablo de lo que debes hacer si quieres un mejor trabajo, despedir a tu jefe, ganar más dinero y no quedarte obsoleto. A la mayoría no le gusta porque no son perezosos.
         </p>
       </div>
     </div>
@@ -188,16 +197,18 @@ function createServicesSection(): string {
         
         const disabledClass = service.disabled ? 'service-disabled' : '';
         const separator = index < services.length - 1 ? '<div class="service-separator"></div>' : '';
-        const buttonText = service.disabled ? service.price : 'a ver si encaja';
+        const buttonText = service.disabled ? service.price : (service.buttonText || 'a ver si encaja');
+        const comingSoonOverlay = service.disabled ? '<div class="service-coming-soon">construyendo algo chulo</div>' : '';
         
         return `
         <div class="service-item ${disabledClass}">
+          ${comingSoonOverlay}
           <div class="service-title">${service.title}</div>
           <div class="service-tagline">${service.tagline}</div>
           <ul class="service-features">
             ${featuresHTML}
           </ul>
-          <button class="service-button" ${service.disabled ? 'disabled' : ''}>${buttonText}</button>
+          <a href="/form.html?service=${service.title}" class="service-button" ${service.disabled ? 'style="pointer-events: none;"' : ''}>${buttonText}</a>
         </div>
         ${separator}
       `;
@@ -213,6 +224,9 @@ function createServicesSection(): string {
           <polyline points="22 4 12 14.01 9 11.01"></polyline>
         </svg>
         <span>si todo esto resuena contigo, puedo ayudarte</span>
+      </div>
+      <div class="services-description">
+        ¿Por qué creo que puedo ayudarte? No me considero ni mejor ni peor que nadie, pero mis más de 14 proyectos, 11 años de experiencia y mi ambición por crecer me han hecho probar diferentes estrategias y he creado una forma de ser que atrae oportunidades sin buscarlas.
       </div>
       <div class="services">
         ${servicesHTML}
@@ -259,9 +273,12 @@ function createProjectsSection(): string {
           `;
         }
 
+        const constructionLabel = project.inConstruction ? '<div class="construction-label">en construcción</div>' : '';
+        
         return `
       <div class="service-item">
         <div class="service-title">${project.title}</div>
+        ${constructionLabel}
         ${imageHTML}
         ${socialIconsHTML}
         <div class="service-description">${project.description}</div>
@@ -382,9 +399,9 @@ function createSalaryProgressionSection(): string {
           <line x1="18" y1="20" x2="18" y2="4"></line>
           <line x1="6" y1="20" x2="6" y2="16"></line>
         </svg>
-        <span>esta es mi progresion salarial</span>
+        <span>esta es mi progresión salarial</span>
       </div>
-      <div class="chart-hint">* haz click en el ultimo punto de mi progresion salarial</div>
+      <div class="chart-hint">* haz click en el último punto de mi progresión salarial</div>
       <div class="chart-container">
         <svg width="${chartWidth}" height="${chartHeight}" viewBox="0 0 ${chartWidth} ${chartHeight}">
           <defs>
@@ -417,7 +434,7 @@ function createFooter(): string {
   const heartIcon = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin: 0 2px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>';
   return `
     <div class="footer">
-      © 2026 AQUALITIGUY. Todos los derechos reservados. · Echo por Lleïr con ${heartIcon} y Vibe Code
+      © 2026 AQUALITIGUY. Todos los derechos reservados. · Hecho por Lleïr con ${heartIcon} y Vibe Code
     </div>
   `;
 }
