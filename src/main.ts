@@ -235,6 +235,19 @@ function createServicesSection(): string {
   `;
 }
 
+function createExclusiveSessionSection(): string {
+  return `
+    <div class="section exclusive-session-section">
+      <div class="exclusive-session-content">
+        <p class="exclusive-session-text">
+          ¿Necesitas algo más específico? Solicita una sesión exclusiva de 1 hora para comentar tu situación particular.
+        </p>
+        <a href="/form.html?service=exclusiva" class="exclusive-session-button">solicitar sesión exclusiva</a>
+      </div>
+    </div>
+  `;
+}
+
 function createProjectsSection(): string {
   const youtubeIcon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;
   
@@ -349,7 +362,7 @@ function createSalaryProgressionSection(): string {
   
   // Último segmento con blur
   const blurPath = blurPoint && lastNormalPoint 
-    ? `<path d="M ${lastNormalPoint.x},${lastNormalPoint.y} L ${blurPoint.x},${blurPoint.y}" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.2" filter="url(#blur)" />`
+    ? `<path d="M ${lastNormalPoint.x},${lastNormalPoint.y} L ${blurPoint.x},${blurPoint.y}" fill="none" stroke="var(--color-secondary)" stroke-width="2" opacity="0.2" filter="url(#blur)" />`
     : '';
 
   // Generar puntos/círculos (sin salario encima)
@@ -359,9 +372,9 @@ function createSalaryProgressionSection(): string {
       const y = padding + graphHeight - (data.salary / maxSalary) * graphHeight;
       if (data.blur) {
         // Último punto clickeable
-        return `<circle cx="${x}" cy="${y}" r="8" fill="#ffffff" opacity="0.3" filter="url(#blur)" class="clickable-point" style="cursor: pointer;" data-point-index="${index}" />`;
+        return `<circle cx="${x}" cy="${y}" r="8" fill="var(--color-secondary)" opacity="0.3" filter="url(#blur)" class="clickable-point" style="cursor: pointer;" data-point-index="${index}" />`;
       }
-      return `<circle cx="${x}" cy="${y}" r="5" fill="none" stroke="#ffffff" stroke-width="2" />`;
+      return `<circle cx="${x}" cy="${y}" r="5" fill="var(--color-secondary)" stroke="var(--color-secondary)" stroke-width="2" />`;
     })
     .join('');
 
@@ -411,7 +424,7 @@ function createSalaryProgressionSection(): string {
           </defs>
           ${gridLines}
           ${salaryLabels}
-          <path d="${pathD}" fill="none" stroke="#ffffff" stroke-width="2" />
+          <path d="${pathD}" fill="none" stroke="var(--color-secondary)" stroke-width="2" />
           ${blurPath}
           ${circles}
           ${yearLabels}
@@ -433,15 +446,15 @@ function createFooter(): string {
   const heartIcon = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin: 0 2px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>';
   return `
     <div class="footer">
-      <div>
-        © 2026 AQUALITIGUY. Todos los derechos reservados. · Hecho por Lleïr con ${heartIcon} y Vibe Code
-      </div>
       <div class="footer-links">
         <a href="/aviso-legal.html">Aviso Legal</a>
         <span>·</span>
         <a href="/politica-de-privacidad.html">Política de Privacidad</a>
         <span>·</span>
         <a href="/terminos-y-condiciones.html">Términos y Condiciones</a>
+      </div>
+      <div>
+        © 2026 AQUALITIGUY. Todos los derechos reservados. · Hecho por Lleïr con ${heartIcon} y Vibe Code
       </div>
     </div>
   `;
@@ -590,6 +603,7 @@ function createTopSocialBar(): string {
 
   return `
     <div class="top-social-bar">
+      <div id="reading-time" class="reading-time"></div>
       <div class="social-links-top">
         ${socialHTML}
       </div>
@@ -606,6 +620,7 @@ app.innerHTML = `
     ${createSalaryProgressionSection()}
     ${createHowICanHelpSection()}
     ${createServicesSection()}
+    ${createExclusiveSessionSection()}
     ${createFooter()}
   </div>
   ${createModal()}
@@ -644,6 +659,65 @@ function generateRandomStarPositions() {
 setTimeout(() => {
   generateRandomStarPositions();
 }, 0);
+
+// Calcular y mostrar tiempo de lectura
+function calculateReadingTime() {
+  // Obtener todo el texto visible de la página (excluyendo scripts, estilos, etc.)
+  const container = document.querySelector('.container');
+  if (!container) return;
+
+  // Obtener todo el texto del contenido principal, incluyendo contenido oculto (como "seguir leyendo")
+  // Excluyendo elementos de navegación, botones, y otros elementos no relevantes
+  const textElements = container.querySelectorAll('.section-intro, .about-content p, .about-content-visible p, .about-content-hidden p, .help-content p, .service-description, .services-description, .exclusive-session-text, .service-title, .service-tagline, .service-features li');
+  
+  // También incluir el texto del footer (excluyendo los enlaces)
+  const footerText = container.querySelector('.footer > div:not(.footer-links)');
+  
+  let totalWords = 0;
+  textElements.forEach(element => {
+    // Incluir incluso elementos ocultos para calcular el tiempo total
+    const text = element.textContent || '';
+    // Contar palabras (separadas por espacios), excluyendo texto vacío
+    const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+    totalWords += words.length;
+  });
+  
+  // Agregar palabras del footer si existe
+  if (footerText) {
+    const footerTextContent = footerText.textContent || '';
+    const footerWords = footerTextContent.trim().split(/\s+/).filter(word => word.length > 0);
+    totalWords += footerWords.length;
+  }
+
+  // Velocidad de lectura promedio: 200 palabras por minuto
+  // Para "leer y entender" usamos un poco menos: 180 palabras por minuto
+  const wordsPerMinute = 180;
+  const totalMinutes = totalWords / wordsPerMinute;
+  const minutes = Math.floor(totalMinutes);
+  const seconds = Math.round((totalMinutes - minutes) * 60);
+
+  // Formatear el tiempo
+  let timeText = '';
+  if (minutes > 0) {
+    timeText = `${minutes} minuto${minutes !== 1 ? 's' : ''}`;
+    if (seconds > 0) {
+      timeText += ` ${seconds} segundo${seconds !== 1 ? 's' : ''}`;
+    }
+  } else {
+    timeText = `${seconds} segundo${seconds !== 1 ? 's' : ''}`;
+  }
+
+  // Mostrar el tiempo de lectura
+  const readingTimeElement = document.getElementById('reading-time');
+  if (readingTimeElement) {
+    readingTimeElement.textContent = `~${timeText}`;
+  }
+}
+
+// Calcular tiempo de lectura después de que el DOM esté listo
+setTimeout(() => {
+  calculateReadingTime();
+}, 200);
 
 // Funcionalidad de "seguir leyendo"
 setTimeout(() => {

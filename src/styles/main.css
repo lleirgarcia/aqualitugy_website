@@ -104,6 +104,14 @@ body {
   min-height: 100vh;
   padding: 15px 40px;
   margin: 0 auto;
+  position: relative;
+}
+
+.reading-time {
+  font-size: 11px;
+  color: #666;
+  font-family: 'Space Grotesk', sans-serif;
+  white-space: nowrap;
 }
 
 .top-bar {
@@ -127,7 +135,7 @@ body {
 
 .top-social-bar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 8px 0;
   margin-bottom: 20px;
@@ -884,7 +892,46 @@ body {
 .legend-line {
   width: 30px;
   height: 2px;
+  background-color: var(--color-secondary);
+}
+
+.exclusive-session-section {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.exclusive-session-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.exclusive-session-text {
+  font-size: 13px;
+  color: #d0d0d0;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.exclusive-session-button {
   background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+}
+
+.exclusive-session-button:hover {
+  background-color: #e0e0e0;
 }
 
 .footer {
@@ -1196,6 +1243,10 @@ body {
     padding: 40px 20px;
     border-left: none;
     border-right: none;
+  }
+
+  .reading-time {
+    font-size: 10px;
   }
 
   .profile-header {
