@@ -1,21 +1,125 @@
-# AqualityGuy - Personal Page
+# AqualityGuy - Personal Website
 
-Página personal estática para promocionar redes sociales y servicios de consultoría.
+Página web personal profesional para promocionar servicios de consultoría, mostrar experiencia y conectar con profesionales del sector tech.
 
-## Tecnologías
+## 🚀 Características Implementadas
 
-- TypeScript
-- Vite
+### Página Principal
+- **Diseño oscuro y minimalista** con efectos de estrellas animadas
+- **Sección "Quién soy"** con información personal y profesional
+- **Servicios de consultoría** con tres planes:
+  - **Espabila**: Para juniors y middles que buscan crecer profesionalmente
+  - **Crételo**: Para seniors que quieren dar el salto al siguiente nivel
+  - **Comunidad**: Acceso a comunidad y charlas grupales
+- **Gráfico de progresión salarial** interactivo con Chart.js mostrando el crecimiento profesional
+- **Enlaces a redes sociales** (Twitter/X, LinkedIn, GitHub)
+- **Navegación fluida** con scroll suave y animaciones
 
-## Desarrollo
+### Formulario de Contacto
+- Formulario funcional para consultas y contacto
+- Validación de campos
+- Diseño coherente con el estilo general
+
+### Páginas Legales
+- **Aviso Legal**
+- **Política de Privacidad**
+- **Términos y Condiciones**
+- Navegación integrada entre páginas legales
+
+### Estructura del Proyecto
+- **Organización modular** con separación de estilos, tipos y configuración
+- **TypeScript** para type safety
+- **Assets organizados** en carpetas dedicadas
+- **Configuración de Vercel** para despliegue
+
+## 🛠️ Tecnologías
+
+- **TypeScript** - Lenguaje principal
+- **Vite** - Build tool y dev server
+- **Chart.js** - Gráficos interactivos
+- **Vercel** - Hosting y despliegue
+- **HTML5/CSS3** - Estructura y estilos
+
+## 📦 Instalación
 
 ```bash
+# Instalar dependencias
 npm install
+```
+
+## 🏃 Desarrollo
+
+```bash
+# Iniciar servidor de desarrollo
 npm run dev
 ```
 
-## Build
+El servidor se iniciará en `http://localhost:5173`
+
+## 🏗️ Build
 
 ```bash
+# Compilar para producción
 npm run build
+
+# Verificar tipos TypeScript
+npm run type-check
+
+# Preview de la build
+npm run preview
 ```
+
+## 🚢 Despliegue
+
+El proyecto está configurado para desplegarse en Vercel:
+
+```bash
+# Desplegar a producción
+npm run deploy
+
+# Desplegar preview
+npm run deploy:preview
+```
+
+## 📁 Estructura del Proyecto
+
+```
+├── src/
+│   ├── assets/          # Imágenes y recursos
+│   ├── config/          # Archivos de configuración
+│   ├── styles/          # Estilos CSS
+│   ├── types/           # Definiciones de tipos TypeScript
+│   ├── form.ts          # Lógica del formulario
+│   ├── legal-pages.ts   # Manejo de páginas legales
+│   └── main.ts          # Punto de entrada principal
+├── index.html           # Página principal
+├── form.html            # Página de formulario
+├── aviso-legal.html     # Aviso legal
+├── politica-de-privacidad.html
+├── terminos-y-condiciones.html
+├── vercel.json          # Configuración de Vercel
+└── package.json
+```
+
+## 🔮 Próximas Funcionalidades
+
+Para ver las ideas y funcionalidades planificadas para el futuro, consulta el archivo **[IDEAS.md](./IDEAS.md)** que contiene:
+- Portafolio de proyectos
+- Sistema de calendario para charlas
+- Integración con Stripe para pagos
+- Plataforma de cliente
+- Y más...
+
+## 📝 Notas
+
+- El diseño mantiene una estética oscura y minimalista en todas las secciones
+- Los componentes son modulares y fáciles de mantener
+- El código está tipado con TypeScript para mayor seguridad
+
+## 📄 Licencia
+
+Este proyecto es personal y privado.
+
+---
+
+Desarrollado con ❤️ por AqualityGuy
