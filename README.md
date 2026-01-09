@@ -17,7 +17,9 @@ Página web personal profesional para promocionar servicios de consultoría, mos
 
 ### Formulario de Contacto
 - Formulario funcional para consultas y contacto
-- Validación de campos
+- Validación de campos en cliente y servidor
+- Almacenamiento de datos en base de datos Supabase (PostgreSQL)
+- Protección anti-spam con honeypot
 - Diseño coherente con el estilo general
 
 ### Páginas Legales
@@ -37,7 +39,8 @@ Página web personal profesional para promocionar servicios de consultoría, mos
 - **TypeScript** - Lenguaje principal
 - **Vite** - Build tool y dev server
 - **Chart.js** - Gráficos interactivos
-- **Vercel** - Hosting y despliegue
+- **Supabase** - Base de datos PostgreSQL para formularios
+- **Vercel** - Hosting y despliegue (Serverless Functions)
 - **HTML5/CSS3** - Estructura y estilos
 
 ## 📦 Instalación
@@ -84,6 +87,10 @@ npm run deploy:preview
 ## 📁 Estructura del Proyecto
 
 ```
+├── api/                 # Vercel Serverless Functions
+│   └── submit-form.ts   # API endpoint para formularios
+├── supabase/            # Scripts de base de datos
+│   └── schema.sql       # Esquema de base de datos
 ├── src/
 │   ├── assets/          # Imágenes y recursos
 │   ├── config/          # Archivos de configuración
@@ -98,8 +105,32 @@ npm run deploy:preview
 ├── politica-de-privacidad.html
 ├── terminos-y-condiciones.html
 ├── vercel.json          # Configuración de Vercel
+├── DATABASE_SETUP.md    # Guía de configuración de base de datos
 └── package.json
 ```
+
+## 🗄️ Base de Datos
+
+El proyecto utiliza **Supabase (PostgreSQL)** para almacenar los datos de los formularios.
+
+### Configuración
+
+Consulta **[DATABASE_SETUP.md](./DATABASE_SETUP.md)** para la guía completa de configuración.
+
+**Resumen rápido:**
+1. Crea un proyecto en [Supabase](https://supabase.com)
+2. Ejecuta el script `supabase/schema.sql` en el SQL Editor
+3. Configura las variables de entorno en Vercel:
+   - `SUPABASE_URL`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+
+### Estructura
+
+Los datos del formulario se almacenan en la tabla `form_submissions` con:
+- Información personal y de contacto
+- Situación laboral actual
+- Objetivos y metas
+- Consentimientos y metadatos
 
 ## 🔮 Próximas Funcionalidades
 

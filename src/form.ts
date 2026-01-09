@@ -303,7 +303,7 @@ setTimeout(() => {
   // Manejo del formulario
   const form = document.getElementById('serviceForm') as HTMLFormElement;
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       
       // Validar honeypot
@@ -320,8 +320,76 @@ setTimeout(() => {
         return;
       }
       
-      // Aquí iría la lógica de envío del formulario
-      alert('Formulario enviado (esto es un ejemplo)');
+      // Obtener botón de submit para deshabilitarlo durante el envío
+      const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const originalButtonText = submitButton?.textContent || 'Enviar formulario';
+      
+      // Deshabilitar botón y mostrar estado de carga
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Enviando...';
+      }
+      
+      try {
+        // Recopilar todos los datos del formulario
+        const formData = new FormData(form);
+        const data: Record<string, any> = {
+          service: serviceName,
+        };
+        
+        // Convertir FormData a objeto
+        for (const [key, value] of formData.entries()) {
+          // Manejar checkboxes
+          if (key === 'privacyAccept' || key === 'marketingAccept') {
+            data[key] = true;
+          } else {
+            data[key] = value;
+          }
+        }
+        
+        // Manejar radio buttons
+        const trabajandoRadio = form.querySelector('input[name="trabajando"]:checked') as HTMLInputElement;
+        if (trabajandoRadio) {
+          data.trabajando = trabajandoRadio.value;
+        }
+        
+        const nivelRadio = form.querySelector('input[name="nivel"]:checked') as HTMLInputElement;
+        if (nivelRadio) {
+          data.nivel = nivelRadio.value;
+        }
+        
+        // Enviar a la API
+        const response = await fetch('/api/submit-form', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+        
+        const result = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(result.error || 'Error al enviar el formulario');
+        }
+        
+        // Éxito
+        alert('¡Formulario enviado correctamente! Te contactaremos pronto.');
+        form.reset();
+        
+        // Opcional: redirigir a la página principal
+        // window.location.href = '/';
+        
+      } catch (error) {
+        console.error('Error al enviar formulario:', error);
+        alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo o contáctanos directamente.');
+      } finally {
+        // Restaurar botón
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+      }
     });
   }
 }, 100);
