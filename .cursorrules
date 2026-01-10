@@ -1,0 +1,318 @@
+# Cursor Rules - AqualityGuy Project
+
+## 📋 Información del Proyecto
+- **Nombre**: AqualityGuy Website
+- **Tipo**: Sitio web estático
+- **Build Tool**: Vite
+- **Lenguaje**: TypeScript (strict mode)
+- **Estilos**: CSS vanilla
+- **Deploy**: Vercel
+- **Charts**: Chart.js
+
+---
+
+## 🎯 REGLAS BÁSICAS
+
+### Estilo de Código
+- Usar TypeScript estricto (strict mode habilitado)
+- Preferir funciones arrow cuando sea posible
+- Usar `const`/`let`, nunca `var`
+- Nombres de variables y funciones en `camelCase`
+- Nombres de archivos en `kebab-case` (ej: `legal-pages.ts`)
+- Nombres de tipos/interfaces en `PascalCase` (ej: `Service`, `Project`)
+- Constantes en `UPPER_SNAKE_CASE` cuando sea apropiado
+
+### Estructura del Proyecto
+```
+src/
+  assets/     # Imágenes y recursos estáticos
+  config/     # Configuraciones (legal.ts, etc.)
+  styles/     # Archivos CSS
+  types/      # Definiciones de tipos TypeScript
+  *.ts        # Módulos principales
+```
+
+- Mantener la organización modular: assets, styles, types, config
+- Los estilos van en `src/styles/`
+- Los tipos van en `src/types/`
+- Las configuraciones van en `src/config/`
+- Los assets van en `src/assets/`
+
+### TypeScript
+- Habilitar strict mode siempre
+- Definir tipos en `src/types/index.ts`
+- Usar interfaces para objetos complejos
+- Evitar `any`, usar `unknown` si es necesario
+- Exportar tipos cuando se reutilicen
+- Usar type assertions solo cuando sea necesario
+- Preferir type guards sobre type assertions
+- Documentar tipos complejos con comentarios JSDoc cuando sea útil
+
+### CSS
+- Usar CSS vanilla (no frameworks CSS)
+- Variables CSS para colores y temas
+- Diseño oscuro por defecto
+- Responsive design mobile-first
+- Organizar estilos por sección con comentarios
+- Usar BEM-like naming para clases complejas
+- Mantener especificidad baja
+- Usar `var(--variable-name)` para valores reutilizables
+
+### HTML
+- Usar semántica HTML5 apropiada
+- Incluir atributos `aria-*` cuando sea necesario para accesibilidad
+- Mantener estructura accesible
+- Usar `rel="noopener noreferrer"` en enlaces externos con `target="_blank"`
+
+### Formularios
+- Siempre validar campos antes de enviar
+- Incluir protección anti-spam (honeypot)
+- Validar checkboxes de privacidad obligatorios
+- Mostrar feedback visual al usuario
+- Validación en tiempo real cuando sea apropiado
+- Mensajes de error claros y específicos
+- Usar tipos de input apropiados (`email`, `tel`, `number`, etc.)
+
+### Páginas Legales
+- Mantener contenido en `src/config/legal.ts`
+- Usar el sistema de navegación entre páginas legales
+- Mantener consistencia en el formato HTML
+- Enlaces a políticas de privacidad y términos en formularios
+
+---
+
+## 🚀 REGLAS AVANZADAS
+
+### Arquitectura y Patrones
+
+#### Funciones
+- Mantener funciones pequeñas y enfocadas (< 100 líneas preferiblemente)
+- Preferir funciones puras cuando sea posible
+- Evitar efectos secundarios innecesarios
+- Usar template literals para strings complejos
+- Preferir `async/await` sobre `Promise.then()`
+- Comentar código complejo o no obvio
+
+#### Manejo de DOM
+- Usar `document.getElementById()` con non-null assertion (`!`) cuando estés seguro
+- Agrupar manipulación de DOM en funciones específicas
+- Usar `setTimeout` para operaciones que requieren DOM listo
+- Preferir `addEventListener` sobre atributos inline de eventos
+
+#### Generación de HTML
+- Usar template literals para generar HTML dinámico
+- Separar lógica de generación de HTML en funciones dedicadas
+- Mantener HTML generado legible y bien formateado
+- Usar `.map()` y `.join('')` para listas dinámicas
+
+### TypeScript Avanzado
+
+#### Tipos y Interfaces
+```typescript
+// ✅ Correcto
+export interface Service {
+  title: string;
+  tagline: string;
+  features: string[];
+  price: string;
+  buttonText?: string;
+  disabled?: boolean;
+}
+
+// ❌ Evitar
+interface Service {
+  title: any;
+  [key: string]: unknown;
+}
+```
+
+#### Type Guards
+- Usar type guards para validar tipos en runtime
+- Preferir type guards sobre type assertions cuando sea posible
+
+#### Imports
+- Agrupar imports: primero externos, luego locales
+- Usar `import type` para imports de solo tipos
+- Mantener imports organizados y limpios
+
+### Validación y Seguridad
+
+#### Formularios
+- Validar honeypot antes de procesar
+- Validar todos los campos obligatorios
+- Validar formatos (email, teléfono, etc.)
+- Validar rangos numéricos (edad: 13-99, experiencia: 0-60, salarios: según contexto)
+- Validar checkboxes de privacidad obligatorios
+- Mostrar mensajes de error específicos
+
+#### Validación en Tiempo Real
+- Implementar validación en tiempo real para campos críticos
+- Limpiar valores inválidos automáticamente cuando sea apropiado
+- Proporcionar feedback inmediato al usuario
+
+### Performance
+
+#### Optimización
+- Evitar re-renderizados innecesarios
+- Usar `setTimeout` con delays apropiados para operaciones no críticas
+- Lazy load de recursos pesados cuando sea posible
+- Minimizar manipulación directa del DOM
+
+#### Carga de Recursos
+- Importar imágenes como módulos cuando sea posible
+- Usar Vite para optimización de assets
+- Mantener bundle size bajo
+
+### Convenciones de Nombres
+
+#### Archivos
+- `main.ts` - Punto de entrada principal
+- `form.ts` - Lógica de formularios
+- `legal-pages.ts` - Páginas legales
+- `cursos.ts` - Páginas de cursos
+- `*-config.ts` - Archivos de configuración
+
+#### Funciones
+- `create*()` - Funciones que generan HTML (ej: `createTopBar()`)
+- `handle*()` - Handlers de eventos (ej: `handleSubmit()`)
+- `validate*()` - Funciones de validación (ej: `validateEmail()`)
+- `calculate*()` - Funciones de cálculo (ej: `calculateReadingTime()`)
+
+#### Variables
+- `*HTML` - Variables que contienen strings HTML (ej: `servicesHTML`)
+- `*Data` - Arrays u objetos de datos (ej: `salaryData`)
+- `*Element` - Referencias a elementos DOM (ej: `formElement`)
+
+### Buenas Prácticas
+
+#### Código Limpio
+- Mantener funciones con una sola responsabilidad
+- Evitar código duplicado (DRY principle)
+- No hardcodear valores mágicos, usar constantes
+- Comentar decisiones no obvias
+- Mantener código legible y autodocumentado
+
+#### Manejo de Errores
+- Validar inputs antes de procesarlos
+- Manejar casos edge apropiadamente
+- Proporcionar feedback útil al usuario
+- Usar `console.log` para debugging, pero limpiar en producción
+
+#### Git y Commits
+- Commits descriptivos en español
+- No committear `node_modules`, `dist`, o archivos temporales
+- No committear credenciales o secrets
+- Mantener `.gitignore` actualizado
+
+### Evitar
+
+#### ❌ NO Hacer
+- No usar `any` en TypeScript
+- No hardcodear valores mágicos
+- No duplicar código (DRY principle)
+- No committear credenciales o secrets
+- No usar `var`
+- No usar funciones anónimas cuando una arrow function es más clara
+- No manipular DOM antes de que esté listo
+- No olvidar validar inputs de usuario
+- No olvidar protección anti-spam en formularios
+- No usar `innerHTML` sin sanitizar (aunque en este proyecto se usa para contenido controlado)
+
+#### ✅ SÍ Hacer
+- Usar TypeScript strict mode
+- Validar todos los inputs
+- Usar type guards cuando sea necesario
+- Mantener código modular
+- Comentar código complejo
+- Usar nombres descriptivos
+- Mantener funciones pequeñas
+- Usar template literals para HTML dinámico
+
+---
+
+## 📝 Ejemplos de Código
+
+### Generación de HTML
+```typescript
+// ✅ Correcto
+function createTopBar(): string {
+  return `
+    <div class="top-bar">
+      <span>software engineer</span>
+    </div>
+  `;
+}
+
+// ✅ Correcto - Lista dinámica
+const servicesHTML = services
+  .map((service) => `<div>${service.title}</div>`)
+  .join('');
+```
+
+### Validación
+```typescript
+// ✅ Correcto
+const edadInput = document.getElementById('edad') as HTMLInputElement;
+if (edadInput) {
+  edadInput.addEventListener('input', (e) => {
+    const value = parseInt((e.target as HTMLInputElement).value);
+    if (isNaN(value) || value < 13 || value > 99) {
+      (e.target as HTMLInputElement).value = '';
+    }
+  });
+}
+```
+
+### TypeScript
+```typescript
+// ✅ Correcto
+import type { Service, Project } from './types';
+
+const services: Service[] = [
+  {
+    title: 'espabila',
+    tagline: 'Quiero un curro y futuro encaminado',
+    features: [],
+    price: '€XXX/mes'
+  }
+];
+```
+
+---
+
+## 🎨 Estilo Visual
+
+- Diseño oscuro por defecto
+- Minimalista y limpio
+- Enfoque en legibilidad
+- Uso consistente de colores mediante variables CSS
+- Tipografía: Space Grotesk (o similar)
+
+---
+
+## 🔧 Scripts Disponibles
+
+- `npm run dev` - Desarrollo local
+- `npm run build` - Build de producción
+- `npm run build:check` - Verificar tipos sin build
+- `npm run preview` - Preview del build
+- `npm run deploy` - Deploy a producción (Vercel)
+- `npm run deploy:preview` - Deploy preview (Vercel)
+
+---
+
+## 📚 Recursos
+
+- Documentación del proyecto en `docs/`
+- Ideas pendientes en `IDEAS.md`
+- Registro de trabajo en `REGISTRO.md`
+
+---
+
+## 💡 Notas Finales
+
+- Este proyecto prioriza la simplicidad y mantenibilidad
+- El código debe ser autodocumentado cuando sea posible
+- Mantener consistencia con el código existente
+- Cuando dudes, pregunta o revisa código similar existente
+- Priorizar legibilidad sobre optimización prematura
