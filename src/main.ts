@@ -21,7 +21,7 @@ const services: Service[] = [
     ],
     price: '€XXX/mes',
     buttonText: 'empecemos por algo',
-    disabled: false
+    disabled: true
   },
   {
     title: 'creetelo',
@@ -37,7 +37,7 @@ const services: Service[] = [
     ],
     price: '€XXX/mes',
     buttonText: 'quiero mas',
-    disabled: false
+    disabled: true
   },
   {
     title: 'comunidad',
@@ -103,7 +103,7 @@ function createWhoIAmSection(): string {
       <div class="profile-header">
         <img src="${profileImage}" alt="aqualityguy" class="profile-image" />
         <div>
-          <div class="profile-name">aqualityguy</div>
+          <div class="profile-name">lleir garcia</div>
           <div class="section-intro">
             Hola, soy Lleïr Garcia y me he dedicado más de 11 años a la industria del software como Desarrollador, QA y Lead. No tengo carrera, vengo de una FP y ni siquiera pagué mi título. Solo fiel creyente del autodidactismo y el buscarse la vida. Creo contenido en redes sociales según mi experiencia vivida con el objetivo de motivar a las personas a ser mejores profesionales, obtener mejores trabajos y ganar más dinero.
           </div>
@@ -242,7 +242,7 @@ function createExclusiveSessionSection(): string {
         <p class="exclusive-session-text">
           ¿Necesitas algo más específico? Solicita una sesión exclusiva de 1 hora para comentar tu situación particular.
         </p>
-        <a href="/form.html?service=exclusiva" class="exclusive-session-button">solicitar sesión exclusiva</a>
+        <a href="/form.html?service=exclusiva" class="exclusive-session-button" style="pointer-events: none; opacity: 0.4; cursor: not-allowed;">solicitar sesión exclusiva</a>
       </div>
     </div>
   `;

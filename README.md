@@ -76,8 +76,24 @@ npm run preview
 
 El proyecto está configurado para desplegarse en Vercel:
 
+### Despliegue Automático Completo
+
+El script `deploy:full` automatiza todo el proceso: commit, push a develop, build y deploy:
+
 ```bash
-# Desplegar a producción
+# Despliegue completo automático (commit + push + build + deploy)
+npm run deploy:full
+
+# Con mensaje personalizado de commit
+npm run deploy:full -- --message "Descripción de los cambios"
+```
+
+Ver [scripts/README.md](./scripts/README.md) para más opciones y detalles.
+
+### Despliegue Manual
+
+```bash
+# Desplegar a producción (solo build + deploy)
 npm run deploy
 
 # Desplegar preview
@@ -99,6 +115,9 @@ npm run deploy:preview
 │   ├── form.ts          # Lógica del formulario
 │   ├── legal-pages.ts   # Manejo de páginas legales
 │   └── main.ts          # Punto de entrada principal
+├── scripts/             # Scripts de automatización
+│   ├── deploy.js        # Script de despliegue automático
+│   └── README.md        # Documentación del script
 ├── index.html           # Página principal
 ├── form.html            # Página de formulario
 ├── aviso-legal.html     # Aviso legal
