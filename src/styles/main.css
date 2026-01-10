@@ -916,22 +916,23 @@ body {
 }
 
 .exclusive-session-button {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #666;
+  color: #ffffff;
   border: none;
   border-radius: 4px;
-  padding: 12px 24px;
-  font-size: 13px;
-  font-weight: 600;
+  padding: 10px 18px;
+  font-size: 12px;
+  font-weight: 500;
   font-family: 'Space Grotesk', sans-serif;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
   display: inline-block;
 }
 
 .exclusive-session-button:hover {
-  background-color: #e0e0e0;
+  background-color: #777;
+  opacity: 0.9;
 }
 
 .footer {
