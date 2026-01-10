@@ -204,6 +204,14 @@ interface Service {
 - No committear credenciales o secrets
 - Mantener `.gitignore` actualizado
 
+#### Git con el Agente
+- **El agente puede realizar operaciones de git directamente**: El usuario puede pedir al agente que suba código, haga commits, pushes, merges, etc. simplemente hablando con él
+- El agente puede ejecutar comandos git como `git add`, `git commit`, `git push`, `git merge`, etc.
+- El agente debe verificar el estado de git antes de realizar operaciones
+- El agente debe crear commits descriptivos cuando se le pida subir cambios
+- El agente puede trabajar con múltiples ramas (main, develop, feature branches)
+- El usuario puede pedir sincronizar ramas, hacer merge, o subir cambios sin necesidad de usar la terminal manualmente
+
 ### Evitar
 
 #### ❌ NO Hacer
@@ -304,8 +312,22 @@ const services: Service[] = [
 ## 📚 Recursos
 
 - Documentación del proyecto en `docs/`
-- Ideas pendientes en `IDEAS.md`
-- Registro de trabajo en `REGISTRO.md`
+- Ideas pendientes en `docs/IDEAS.md`
+- Registro de trabajo en `docs/REGISTRO.md`
+
+---
+
+## 🤖 Uso del Agente para Git
+
+El agente de Cursor puede realizar todas las operaciones de git directamente. Simplemente pide al agente:
+
+- **"Sube todo a git"** - El agente añadirá, hará commit y push de todos los cambios
+- **"Haz commit de estos cambios"** - El agente creará un commit con los cambios actuales
+- **"Mergea develop a main"** - El agente realizará el merge entre ramas
+- **"Cambia a la rama X"** - El agente cambiará de rama
+- **"Sincroniza las ramas"** - El agente sincronizará los cambios entre ramas
+
+**No es necesario usar la terminal manualmente** - El agente puede manejar todo el flujo de git mediante comandos de voz/texto.
 
 ---
 
