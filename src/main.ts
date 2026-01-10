@@ -21,7 +21,7 @@ const services: Service[] = [
     ],
     price: '€XXX/mes',
     buttonText: 'empecemos por algo',
-    disabled: false
+    disabled: true
   },
   {
     title: 'creetelo',
@@ -37,7 +37,7 @@ const services: Service[] = [
     ],
     price: '€XXX/mes',
     buttonText: 'quiero mas',
-    disabled: false
+    disabled: true
   },
   {
     title: 'comunidad',

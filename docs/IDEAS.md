@@ -1,6 +1,18 @@
 # IDEAS - AqualityGuy Personal Page
 
-## Tareas Pendientes
+## Resumen de Ideas
+
+1. Crear un portafolio de proyectos
+2. Call to Action (CTA) en elementos importantes
+3. Rellenar formularios y enviarlos a correo específico
+4. Añadir selección de día y hora del calendario para charla de 15 minutos
+5. Introducir pasarela de pago Stripe para los servicios
+6. Sistema de envío de servicios después de charla de 15 minutos
+7. Plataforma de cliente para gestión de sesiones y avances
+
+---
+
+## Detalles de las Ideas
 
 ### 1. Crear un portafolio de proyectos
 - **Objetivo**: Desarrollar una sección de portafolio que mantenga el mismo estilo visual de la página
